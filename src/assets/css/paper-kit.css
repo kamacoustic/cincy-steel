@@ -22,6 +22,10 @@
  * Copyright 2012-2013 Mattia Larentis
  * http://www.apache.org/licenses/LICENSE-2.0
  */
+
+ 
+
+ 
 .bootstrap-switch {
   display: inline-block;
   direction: ltr;
@@ -1333,6 +1337,8 @@
   top: 50%;
   margin-top: -1px;
   right: 8px; }
+
+  
 
 .btn-just-icon.btn-sm {
   height: 30px;
@@ -3442,6 +3448,8 @@ License - nucleoapp.com/license/
   height: 30px;
   margin: -10px 0 0 -15px; }
 
+ 
+
 .profile-picture {
   margin: 0 auto; }
   .profile-picture .fileinput-new img {
@@ -3454,6 +3462,8 @@ License - nucleoapp.com/license/
     max-height: 150px;
     border-radius: 50%;
     margin-bottom: 10px; }
+
+    
 
 .tooltip {
   font-size: 12px;

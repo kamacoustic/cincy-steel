@@ -33,6 +33,9 @@ import {
   Container,
   Row,
   Col,
+  Nav,
+  NavItem,
+  NavLink
 } from "reactstrap";
 
 // core components
@@ -40,6 +43,11 @@ import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import LandingPageHeader from "components/Headers/LandingPageHeader.js";
 import DemoFooter from "components/Footers/DemoFooter.js";
 import SectionCarousel from "views/index-sections/SectionCarousel";
+import TwoModal from "components/Modals/TwoModal";
+import ThreeModal from "components/Modals/ThreeModal";
+import SixModal from "components/Modals/SixModal";
+import FullModal from "components/Modals/FullModal";
+
 
 
 function LandingPage() {
@@ -50,6 +58,27 @@ function LandingPage() {
       document.body.classList.remove("profile-page");
     };
   });
+
+  const [openTwoModal, setOpenTwoModal] = React.useState(false)
+  const [openThreeModal, setOpenThreeModal] = React.useState(false)
+  const [openSixModal, setOpenSixModal] = React.useState(false)
+  const [openFullModal, setOpenFullModal] = React.useState(false)
+
+  const toggleSetOpenTwoModal = () => {
+       setOpenTwoModal(!openTwoModal)
+   }
+
+   const toggleSetOpenThreeModal = () => {
+    setOpenThreeModal(!openThreeModal)
+}
+
+const toggleSetOpenSixModal = () => {
+  setOpenSixModal(!openSixModal)
+}
+
+const toggleSetOpenFullModal = () => {
+  setOpenFullModal(!openFullModal)
+}
   return (
     <>
       <ExamplesNavbar />
@@ -69,6 +98,62 @@ function LandingPage() {
                 Its members learned to play at colleges such as Miami, UC, Northern Kentucky, and Xavier or at high schools such as Clark, Elder, or Walnut Hills (just to name a few).
                 Some of them became music educators, while some hold desk jobs, but they all want to spread the sweet pan music across the city of Cincinnati.
                 </h5>
+
+                <div className="example-vid">
+                  <h3>Coming in varying sizes, Cincy Steel can play all sorts of events!!!</h3>
+                  <Button 
+                  className="btn"
+                  onClick={toggleSetOpenTwoModal}
+                  style={{
+                    margin:'0.5%'
+                  }}
+                  >
+                  2 Players
+                  </Button>
+
+                  {openTwoModal && <TwoModal isOpen={setOpenTwoModal} />}
+                  
+                  
+                 
+
+                  <Button 
+                  className="btn"
+                  onClick={toggleSetOpenThreeModal}
+                  style={{
+                    margin:'0.5%'
+                  }}
+                  >
+                  3-4 Players
+                  </Button>
+
+                  {openThreeModal && <ThreeModal isOpen={setOpenThreeModal} />}
+
+                  <Button 
+                  className="btn"
+                  onClick={toggleSetOpenSixModal}
+                  style={{
+                    margin:'0.5%'
+                  }}
+                  >
+                  6-8 Players
+                  </Button>
+
+                  {openSixModal && <SixModal isOpen={setOpenSixModal} />}
+
+                  <Button 
+                  className="btn"
+                  onClick={toggleSetOpenFullModal}
+                  style={{
+                    margin:'0.5%'
+                  }}
+                  >
+                  Full Band!
+                  </Button>
+                  {openFullModal && <FullModal isOpen={setOpenFullModal} />}
+                </div>
+
+                
+                
               </Col>
             </Row>
           </Container>
