@@ -58,7 +58,7 @@ return (
  <div className='modal-footer'>
     <p>
     Audience size: Medium (25-75 people)
-    Examples of gigs played: Happy hours, quinceañeras, work after-hours events, etc.
+    Best suited for: Happy hours, quinceañeras, work after-hours events, etc.
     </p>
  </div>
    </ModalBody>

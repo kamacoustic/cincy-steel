@@ -19,7 +19,11 @@
 import React from "react";
 
 // reactstrap components
-import { Button, Container } from "reactstrap";
+import { Button, Container, Card, CardBody, Row } from "reactstrap";
+import TwoModal from "components/Modals/TwoModal";
+import ThreeModal from "components/Modals/ThreeModal";
+import SixModal from "components/Modals/SixModal";
+import FullModal from "components/Modals/FullModal";
 
 // core components
 
@@ -40,6 +44,27 @@ function LandingPageHeader() {
     }
   });
 
+  const [openTwoModal, setOpenTwoModal] = React.useState(false)
+  const [openThreeModal, setOpenThreeModal] = React.useState(false)
+  const [openSixModal, setOpenSixModal] = React.useState(false)
+  const [openFullModal, setOpenFullModal] = React.useState(false)
+
+  const toggleSetOpenTwoModal = () => {
+       setOpenTwoModal(!openTwoModal)
+   }
+
+   const toggleSetOpenThreeModal = () => {
+    setOpenThreeModal(!openThreeModal)
+}
+
+const toggleSetOpenSixModal = () => {
+  setOpenSixModal(!openSixModal)
+}
+
+const toggleSetOpenFullModal = () => {
+  setOpenFullModal(!openFullModal)
+}
+
   return (
     <>
       <div
@@ -55,7 +80,7 @@ function LandingPageHeader() {
         <div className="filter" />
         <Container>
           <div 
-          className="motto text-center"
+          className=" motto text-center"
           style={{
             fontWeight: "bold",
             textShadow: "2px 2px 2px black, 0 0 5px darkblue"
@@ -64,7 +89,116 @@ function LandingPageHeader() {
           >
             <h1>Welcome!</h1>
             <h3>The official website of Cincy Steel!</h3>
-            <br />
+            
+
+            
+            <div className="example-vid">
+            
+              <h3>Watch and book for your event now!</h3>
+              <Container>
+                <Row xs="2">
+                  <Card
+                  onClick={toggleSetOpenTwoModal}
+                  style={{
+                    cursor:"pointer"
+                  }}
+                  >
+                    <img 
+                    className="card-img" 
+                    src= {require("assets/img/two.jpg").default} 
+                    alt="Card image"
+                    
+                    >
+                    </img>
+                    <div className="card-img-overlay">
+                    
+                      <h4 
+                      className="card-title text-white"
+                      >
+                      2 Players
+                      </h4>
+                      
+                    </div>
+                  </Card>
+                  {openTwoModal && <TwoModal isOpen={setOpenTwoModal} />}
+                  
+                  
+                
+                  <Card
+                  onClick={toggleSetOpenThreeModal}
+                  style={{
+                    cursor:"pointer"
+                  }}
+                  >
+                    <img 
+                    className="card-img-top" 
+                    src= {require("assets/img/three.jpg").default} 
+                    alt="Card image cap"
+                    
+                    >
+                    </img>
+                    
+                    <div className="card-img-overlay">
+
+                      <h4 
+                      className="card-title text-white"
+                      >
+                        3-4 Players
+                      </h4>
+                    </div>
+                  </Card>
+                  {openThreeModal && <ThreeModal isOpen={setOpenThreeModal} />}
+
+                  <Card
+                  onClick={toggleSetOpenSixModal}
+                  style={{
+                    cursor:"pointer"
+                  }}
+                  >
+                    <img 
+                    className="card-img-top" 
+                    src= {require("assets/img/six.jpg").default} 
+                    alt="Card image cap"
+                    
+                    >
+                    </img>
+
+                    <div className="card-img-overlay">
+                      <h4 
+                      className="card-title text-white"
+                      >
+                      6-8 Players
+                      </h4>
+                    </div>
+                  </Card>
+                  {openSixModal && <SixModal isOpen={setOpenSixModal} />}
+
+                  <Card
+                  onClick={toggleSetOpenFullModal}
+                  style={{
+                    cursor:"pointer"
+                  }}
+                  >
+                    <img 
+                    className="card-img-top" 
+                    src= {require("assets/img/full.jpg").default} 
+                    alt="Card image cap"
+                    >
+                    </img>
+
+                    <div className="card-img-overlay">
+                      <h4 
+                      className="card-title text-white"
+                      >
+                      Full Band!
+                      </h4>
+                    </div>
+                  </Card>
+                  {openFullModal && <FullModal isOpen={setOpenFullModal} />}
+                </Row>
+              </Container>
+            
+            </div>
           </div>
         </Container>
       </div>

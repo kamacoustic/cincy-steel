@@ -98,62 +98,6 @@ const toggleSetOpenFullModal = () => {
                 Its members learned to play at colleges such as Miami, UC, Northern Kentucky, and Xavier or at high schools such as Clark, Elder, or Walnut Hills (just to name a few).
                 Some of them became music educators, while some hold desk jobs, but they all want to spread the sweet pan music across the city of Cincinnati.
                 </h5>
-
-                <div className="example-vid">
-                  <h3>Coming in varying sizes, Cincy Steel can play all sorts of events!!!</h3>
-                  <Button 
-                  className="btn"
-                  onClick={toggleSetOpenTwoModal}
-                  style={{
-                    margin:'0.5%'
-                  }}
-                  >
-                  2 Players
-                  </Button>
-
-                  {openTwoModal && <TwoModal isOpen={setOpenTwoModal} />}
-                  
-                  
-                 
-
-                  <Button 
-                  className="btn"
-                  onClick={toggleSetOpenThreeModal}
-                  style={{
-                    margin:'0.5%'
-                  }}
-                  >
-                  3-4 Players
-                  </Button>
-
-                  {openThreeModal && <ThreeModal isOpen={setOpenThreeModal} />}
-
-                  <Button 
-                  className="btn"
-                  onClick={toggleSetOpenSixModal}
-                  style={{
-                    margin:'0.5%'
-                  }}
-                  >
-                  6-8 Players
-                  </Button>
-
-                  {openSixModal && <SixModal isOpen={setOpenSixModal} />}
-
-                  <Button 
-                  className="btn"
-                  onClick={toggleSetOpenFullModal}
-                  style={{
-                    margin:'0.5%'
-                  }}
-                  >
-                  Full Band!
-                  </Button>
-                  {openFullModal && <FullModal isOpen={setOpenFullModal} />}
-                </div>
-
-                
-                
               </Col>
             </Row>
           </Container>

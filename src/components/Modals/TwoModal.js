@@ -58,7 +58,7 @@ return (
  <div className='modal-footer'>
     <p>
         Audience size: Small/Medium (10-50 people)
-        Examples of gigs played: Dinner parties, birthday parties, cocktail hours, etc.
+        Best suited for: Dinner parties, birthday parties, cocktail hours, etc.
     </p>
 </div>
    </ModalBody>

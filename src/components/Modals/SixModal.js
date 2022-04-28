@@ -58,7 +58,7 @@ return (
  <div className='modal-footer'>
     <p>
     Audience size: Medium/Large (50-200 people)
-    Examples of gigs played: Smaller festivals with microphone setup, larger birthday celebrations, outdoor events, etc.
+    Best suited for: Smaller festivals with microphone setup, larger birthday celebrations, outdoor events, etc.
     </p>
  </div>
    </ModalBody>
