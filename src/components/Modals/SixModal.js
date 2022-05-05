@@ -58,7 +58,7 @@ return (
  <div className='modal-footer'>
     <p>
     Audience size: Medium/Large (50-200 people)
-    Best suited for: Smaller festivals with microphone setup, larger birthday celebrations, outdoor events, etc.
+    Great for: Smaller festivals with microphone setup, larger birthday celebrations, outdoor events, etc.
     </p>
  </div>
    </ModalBody>

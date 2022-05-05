@@ -57,7 +57,7 @@ return (
     <div className='modal-footer'>
     <p>
     Audience size: Large (200+ people)
-    Best suited for: Larger festivals, car shows, holiday concerts, city parks, etc.
+    Great for: Larger festivals, car shows, holiday concerts, city parks, etc.
     </p>
  </div>
     

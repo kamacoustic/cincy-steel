@@ -21,10 +21,6 @@ import React from "react";
 // reactstrap components
 import {
   Button,
-  Card,
-  CardBody,
-  CardFooter,
-  CardTitle,
   Form,
   Input,
   InputGroupAddon,
@@ -43,10 +39,12 @@ import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import LandingPageHeader from "components/Headers/LandingPageHeader.js";
 import DemoFooter from "components/Footers/DemoFooter.js";
 import SectionCarousel from "views/index-sections/SectionCarousel";
-import TwoModal from "components/Modals/TwoModal";
-import ThreeModal from "components/Modals/ThreeModal";
-import SixModal from "components/Modals/SixModal";
-import FullModal from "components/Modals/FullModal";
+
+// non-client dependencies
+import { send } from "@emailjs/browser"
+import axios from "axios";
+
+
 
 
 
@@ -59,26 +57,113 @@ function LandingPage() {
     };
   });
 
-  const [openTwoModal, setOpenTwoModal] = React.useState(false)
-  const [openThreeModal, setOpenThreeModal] = React.useState(false)
-  const [openSixModal, setOpenSixModal] = React.useState(false)
-  const [openFullModal, setOpenFullModal] = React.useState(false)
+  // Logic for sending emails with emailjs
 
-  const toggleSetOpenTwoModal = () => {
-       setOpenTwoModal(!openTwoModal)
-   }
+  const [contactInfo, setContactInfo] = React.useState({
+    from_name: '',
+    to_name: 'Mr. Mojo',
+    reply_to: '',
+    message: ''
+  })
 
-   const toggleSetOpenThreeModal = () => {
-    setOpenThreeModal(!openThreeModal)
-}
+  const [thanksMessage, setThanksMessage] = React.useState(false)
 
-const toggleSetOpenSixModal = () => {
-  setOpenSixModal(!openSixModal)
-}
+  const toSubmit = (e) => {
+    e.preventDefault()
+    send(
+        'service_1p2rvpc',
+        'template_5l6ljre',
+        contactInfo,
+        'user_lqLr167J4YsZhVWPD9Ew4'
+    )
+        .then((response) => {
+            console.log('SUCCESS!', response.status, response.text)
+            setThanksMessage(true)
+            
+        })
+        .catch((err) => {
+            console.log('FAILED', err)
+        })
+  }
 
-const toggleSetOpenFullModal = () => {
-  setOpenFullModal(!openFullModal)
-}
+  const handleChange = (e) => {
+    setContactInfo({...contactInfo, [e.target.name]: e.target.value})
+  }
+
+  // Logic for api calls for loading upcoming events
+ 
+
+
+  const getEventInfo =  () => {
+    axios.get('http://localhost:1337/api/upcoming-events').
+      then( response => {
+
+        document.getElementById("upcoming_events").innerHTML = "<div class=\"container\"><h2>Upcoming Events</h2></div>"; // Reset the innerHTML each time this function runs (else it will append on reloads)
+
+        for (let index = 0; index < response.data.data.length; index++) { // for each element in the array, add another "Event Container" to "Upcoming Events" and populate it with the specific even't details
+          let element = response.data.data[index];
+          let date_array = element.attributes.event_date.split("-");
+          let event_year = date_array[0];
+          let event_month = date_array[1];
+          let event_day = date_array[2];
+          let date_string = event_month + "/" + event_day + "/" + event_year;
+          let title_string = element.attributes.event_title;
+          document.getElementById("upcoming_events").innerHTML +=
+          "<div class=\"container\">" +
+          "<h4>" + element.attributes.day + ". " + date_string + ": " + title_string + " @ " + element.attributes.event_location + " " + element.attributes.event_time + "</h4>" +
+          "</div>";
+          
+        }
+      })
+  }
+
+    
+   React.useEffect(getEventInfo)
+
+
+  //  const getPhotos =  () => {
+  //   axios.get('http://localhost:1337/api/photos?populate=*').
+  //     then( response => {
+
+  //       document.getElementById("upcoming_events").innerHTML = "<div class=\"container\"><h2>Upcoming Events</h2></div>"; // Reset the innerHTML each time this function runs (else it will append on reloads)
+
+// let image_loop_array = response.data.attributes.image.data;
+
+  //       for (let index = 0; index < image_loop_array.length; index++) { // for each element in the array, add another "Event Container" to "Upcoming Events" and populate it with the specific even't details
+  //         let element = image_loop_array[index].attributes;
+  //         let date_array = element.aevent_date.split("-");
+  //         let event_year = date_array[0];
+  //         let event_month = date_array[1];
+  //         let event_day = date_array[2];
+  //         let date_string = event_month + "/" + event_day + "/" + event_year;
+  //         let title_string = element.event_title;
+  //         document.getElementById("upcoming_events").innerHTML +=
+  //         "<div class=\"container\">" +
+  //         "<h4>" + element.day + ". " + date_string + ": " + title_string + " @ " + element.event_location + " " + element.event_time + "</h4>" +
+  //         "</div>";
+          
+  //       }
+  //     })
+  // }
+
+    
+  //  React.useEffect(getEventInfo)
+   
+
+
+
+   
+
+   
+
+   
+
+   
+
+    
+
+
+
   return (
     <>
       <ExamplesNavbar />
@@ -134,10 +219,10 @@ const toggleSetOpenFullModal = () => {
         <div className="section section-dark text-center">
           <Container>
             <h2 className="title">Lately. . . </h2>
-            <SectionCarousel />
+            <SectionCarousel jParams="" />
           </Container>
         </div>
-        <div className="section">
+        <div className="section" id="upcoming_events">
           <Container>
             <h2>Upcoming Events</h2>
             <Container>
@@ -153,28 +238,40 @@ const toggleSetOpenFullModal = () => {
             <Row>
               <Col className="ml-auto mr-auto" md="8">
                 <h2 className="text-center">Contact us</h2>
-                <Form className="contact-form">
+                <Form className="contact-form" method="post" onSubmit={toSubmit}>
                   <Row>
                     <Col md="6">
-                      <label>Name</label>
+                      <label htmlFor="name">Name</label>
                       <InputGroup>
                         <InputGroupAddon addonType="prepend">
                           <InputGroupText>
                             <i className="nc-icon nc-single-02" />
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input placeholder="Name" type="text" />
+                        <Input 
+                        placeholder="Name"
+                         type="text"
+                         name="from_name"
+                         onChange={handleChange}
+                         value={contactInfo.from_name}
+                          />
                       </InputGroup>
                     </Col>
                     <Col md="6">
-                      <label>Email</label>
+                      <label htmlFor="email">Email</label>
                       <InputGroup>
                         <InputGroupAddon addonType="prepend">
                           <InputGroupText>
                             <i className="nc-icon nc-email-85" />
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input placeholder="Email" type="text" />
+                        <Input 
+                        placeholder="Email"
+                         type="text" 
+                         name="reply_to"
+                         onChange={handleChange}
+                         value={contactInfo.reply_to}
+                         />
                       </InputGroup>
                     </Col>
                   </Row>
@@ -182,15 +279,25 @@ const toggleSetOpenFullModal = () => {
                   <Input
                     placeholder="Excited to hear from you!"
                     type="textarea"
+                    name="message"
                     rows="4"
+                    onChange={handleChange}
+                    value={contactInfo.message}
                   />
                   <Row>
                     <Col className="ml-auto mr-auto" md="4">
-                      <Button className="btn-fill" color="danger" size="lg">
+                      <Button 
+                      className="btn-fill" 
+                      color="danger" 
+                      size="lg"
+                      type="submit"
+                      value="submit"
+                      >
                         Send Message
                       </Button>
                     </Col>
                   </Row>
+                  {thanksMessage && <h1 className="text-white">Thanks!</h1>}
                 </Form>
               </Col>
             </Row>

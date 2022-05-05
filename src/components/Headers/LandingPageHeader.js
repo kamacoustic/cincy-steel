@@ -107,6 +107,9 @@ const toggleSetOpenFullModal = () => {
                     className="card-img" 
                     src= {require("assets/img/two.jpg").default} 
                     alt="Card image"
+                    style={{
+                      opacity: "0.6"
+                    }}
                     
                     >
                     </img>
@@ -134,6 +137,9 @@ const toggleSetOpenFullModal = () => {
                     className="card-img-top" 
                     src= {require("assets/img/three.jpg").default} 
                     alt="Card image cap"
+                    style={{
+                      opacity: "0.6"
+                    }}
                     
                     >
                     </img>
@@ -159,6 +165,9 @@ const toggleSetOpenFullModal = () => {
                     className="card-img-top" 
                     src= {require("assets/img/six.jpg").default} 
                     alt="Card image cap"
+                    style={{
+                      opacity: "0.6"
+                    }}
                     
                     >
                     </img>
@@ -183,6 +192,9 @@ const toggleSetOpenFullModal = () => {
                     className="card-img-top" 
                     src= {require("assets/img/full.jpg").default} 
                     alt="Card image cap"
+                    style={{
+                      opacity: "0.6"
+                    }}
                     >
                     </img>
 

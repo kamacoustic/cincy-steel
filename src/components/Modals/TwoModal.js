@@ -58,7 +58,7 @@ return (
  <div className='modal-footer'>
     <p>
         Audience size: Small/Medium (10-50 people)
-        Best suited for: Dinner parties, birthday parties, cocktail hours, etc.
+        Great for: Dinner parties, birthday parties, cocktail hours, etc.
     </p>
 </div>
    </ModalBody>
