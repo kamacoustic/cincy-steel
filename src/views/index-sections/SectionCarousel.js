@@ -30,64 +30,30 @@ import {
   CarouselCaption,
 } from "reactstrap";
 
-import axios from "axios";
+
 
 // core components
 
-// const items = [
-//   {
-//     src: require("assets/img/band.png").default,
-//     altText: "band",
-//     caption: "The Band!",
-//   },
-//   {
-//     src: require("assets/img/christmas_show.jpg").default,
-//     altText: "show",
-//     caption: "Christmas Event",
-//   },
-//   {
-//     src: require("assets/img/band_back.jpg").default,
-//     altText: "band_back",
-//     caption: "We're Back!",
-//   }
-// ];
-
-  var items = []
-
-  
-
-// response.data[0].attributes.image.data
-
-const getPhotos =  async () => {
-  let response = await axios('http://localhost:1337/api/photos?populate=*')
-  items = [
-      {
-        src: require("assets/img/band.png").default,
-        altText: "band",
-        caption: "The Band!",
-      },
-      {
-        src: require("assets/img/christmas_show.jpg").default,
-        altText: "show",
-        caption: "Christmas Event",
-      },
-      {
-        src: require("assets/img/band_back.jpg").default,
-        altText: "band_back",
-        caption: "We're Back!",
-      }
-    ];
-  let photos = response.data.data[0].attributes.image.data
-  for (let index = 0; index < photos.length; index++) { 
-    let element = photos[index].attributes;
-    var arrayEntry = {}
-    arrayEntry.src = "http://localhost:1337" + element.formats.medium.url
-    arrayEntry.altText = element.alternativeText
-    arrayEntry.caption = element.caption
-    items.push(arrayEntry)
+const items = [
+  {
+    src: require("assets/img/band.png").default,
+    altText: "band",
+    caption: "The Band!",
+  },
+  {
+    src: require("assets/img/christmas_show.jpg").default,
+    altText: "show",
+    caption: "Christmas Event",
+  },
+  {
+    src: require("assets/img/band_back.jpg").default,
+    altText: "band_back",
+    caption: "We're Back!",
   }
-  
-}
+];
+
+ 
+
 
   
 
@@ -95,13 +61,8 @@ function SectionCarousel() {
 
   
 
-   React.useEffect(() => {
-     getPhotos()
-     setAnimating(true)
-     setActiveIndex(0)
-     setAnimating(false)
-   }, [])
-  
+
+   
   const [activeIndex, setActiveIndex] = React.useState(0);
   const [animating, setAnimating] = React.useState(false);
   const onExiting = () => {
@@ -127,14 +88,22 @@ function SectionCarousel() {
 
   return (
     <>
-      <div className="section pt-o" id="carousel">
-        <Container>
+      <div 
+      className="section pt-o" 
+      id="carousel"
+      style={{
+        minHeight: "366px"
+      }}
+      >
+        <Container
+        style={{
+          minHeight: "366px"
+        }}
+        >
           <Row>
             <Col className="ml-auto mr-auto" md="8">
               <Card className="page-carousel"
-              style={{
-                minHeight: "366px"
-              }}
+              
               >
                 <Carousel
                   activeIndex={activeIndex}

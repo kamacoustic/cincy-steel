@@ -233,7 +233,7 @@ function LandingPage() {
             </Container>
           </Container>
         </div>
-        <div className="section section-dark landing-section">
+        <div className="section section-dark landing-section" id="contact">
           <Container>
             <Row>
               <Col className="ml-auto mr-auto" md="8">
