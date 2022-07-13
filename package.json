@@ -86,7 +86,7 @@
   "bugs": {
     "url": "https://github.com/creativetimofficial/paper-kit-react/issues"
   },
-  "engines"{
+  "engines" :{
     "node": "14.15.1"
   }
 }
