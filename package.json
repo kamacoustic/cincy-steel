@@ -2,9 +2,12 @@
   "name": "paper-kit-react",
   "version": "1.3.0",
   "dependencies": {
+    "-": "0.0.1",
     "@emailjs/browser": "^3.6.2",
     "axios": "^0.27.2",
     "classnames": "2.2.6",
+    "express": "^4.18.1",
+    "gh-pages": "^4.0.0",
     "moment": "2.29.1",
     "node-sass": "5.0.0",
     "nouislider": "14.6.4",
@@ -15,17 +18,20 @@
     "react-router": "5.2.0",
     "react-router-dom": "5.2.0",
     "react-scripts": "4.0.3",
-    "reactstrap": "8.9.0"
+    "reactstrap": "8.9.0",
+    "save-dev": "0.0.1-security"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node server/server.js",
     "build": "react-scripts build && gulp licenses",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
     "compile-sass": "node-sass src/assets/scss/paper-kit.scss src/assets/css/paper-kit.css",
     "minify-sass": "node-sass src/assets/scss/paper-kit.scss src/assets/css/paper-kit.min.css --output-style compressed",
-    "map-sass": "node-sass src/assets/scss/paper-kit.scss src/assets/css/paper-kit.css --source-map true"
+    "map-sass": "node-sass src/assets/scss/paper-kit.scss src/assets/css/paper-kit.css --source-map true",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -80,5 +86,5 @@
   "bugs": {
     "url": "https://github.com/creativetimofficial/paper-kit-react/issues"
   },
-  "homepage": "https://demos.creative-tim.com/paper-kit-react/#/index"
+  "homepage": "https://kamacoustic.github.io/cincy-steel"
 }
